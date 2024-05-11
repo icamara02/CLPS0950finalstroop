@@ -67,3 +67,9 @@ while True:
         condition= []
         colors = ['b', 'r', 'g', 'm']
         linestyle = ['-', ]
+
+
+
+
+
+# subgr
