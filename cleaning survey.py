@@ -17,7 +17,7 @@ rows_to_delete = data.iloc[:, 0] == word_to_delete
 print("\nRows to Delete:")
 print(rows_to_delete)
 
-# Delete the rows where 'particiapnt' is found in the first column
+# Delete the rows where 'participant' is found in the first column
 data_filtered = data[~rows_to_delete]
 
 # Display the filtered data
