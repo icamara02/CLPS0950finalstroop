@@ -3,8 +3,6 @@ import pandas as pd
 
 
 #folder path - if others use this, insert their folder path
-#folder_path = input("Enter the folder path for the data folder: ")
-#abs_folder_path = os.path.abspath(folder_path)
 folder_path = '/Users/sofiagerlein/Desktop/CLPS0950finalstroop/stroop/copyofdatatouse'
 
 #storing all data
@@ -30,7 +28,7 @@ for csv in os.listdir(folder_path):
         short_dfs.append(short_df)
 
 raw_df = pd.concat(short_dfs, ignore_index=True)
-# maybe? folder_path = input("Enter the folder path for the raw data file: ")
+# if you use this code, put in your own folder path
 raw_data_folder_path = '/Users/sofiagerlein/Desktop/CLPS0950finalstroop'
 
 raw_data_file_path = os.path.join(raw_data_folder_path, 'raw_data.xlsx')
