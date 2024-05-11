@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as stats
 
+
 #read data from CSV
 data = pd.read_csv('__.csv')
 
@@ -61,5 +62,8 @@ while True:
 #Log-transformed Graph
 while True:
     graph_prompt= 'Do you want to produce a graph with average response time between conditions? (yes/no)'
-
-
+    choice= input(graph_prompt).lower() == 'yes':
+    if graph_prompt.lower ()== 'yes':
+        condition= []
+        colors = ['b', 'r', 'g', 'm']
+        linestyle = ['-', ]
