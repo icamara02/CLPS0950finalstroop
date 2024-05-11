@@ -36,7 +36,34 @@ raw_data_file_path = os.path.join(raw_data_folder_path, 'raw_data.csv')
 # Write the raw DataFrame to an Excel file in the specified output folder
 raw_df.to_csv(raw_data_file_path, index=False)
 
+## MERGE data from questionnaire and match responses to participant ID numbers in raw data
 
+# Folder path for raw data files
+raw_data_folder_path = '/Users/icamara/Desktop/CLPS0950finalstroop'
+
+# Read the existing raw data CSV file
+raw_data_file_path = os.path.join(raw_data_folder_path, 'raw_data.csv')
+raw_df = pd.read_csv(raw_data_file_path)
+
+# Read the additional CSV file containing the new data
+survey_data_file_path = os.path.join(raw_data_folder_path, 'survey_data.csv')
+survey_df = pd.read_csv(survey_data_file_path)
+
+# Check if 'Participant ID' column contains non-numeric values
+non_numeric_ids = survey_df[~survey_df['Participant ID'].str.isdigit()]['Participant ID']
+if not non_numeric_ids.empty:
+    print("Warning: Non-numeric values found in 'Participant ID' column:", non_numeric_ids)
+
+# Convert the 'Participant ID' column to numeric type
+survey_df['Participant ID'] = pd.to_numeric(survey_df['Participant ID'], errors='coerce')
+
+# Merge data based on participant ID numbers
+merged_data = pd.merge(raw_df, survey_df, left_on='participant', right_on='Participant ID', how='left')
+
+# Save merged data back to the raw data CSV file
+merged_data.to_csv(raw_data_file_path, index=False)
+
+print("Merged data saved back to 'raw_data.csv'")
 
 
 
