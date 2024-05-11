@@ -3,7 +3,7 @@ import pandas as pd
 
 
 #folder path - if others use this, insert their folder path
-folder_path = '/Users/sofiagerlein/Desktop/CLPS0950finalstroop/stroop/copyofdatatouse'
+folder_path = '/Users/icamara/Desktop/CLPS0950finalstroop/stroop/copyofdatatouse'
 
 #storing all data
 short_dfs = []
@@ -29,12 +29,18 @@ for csv in os.listdir(folder_path):
 
 raw_df = pd.concat(short_dfs, ignore_index=True)
 # if you use this code, put in your own folder path
-raw_data_folder_path = '/Users/sofiagerlein/Desktop/CLPS0950finalstroop'
+raw_data_folder_path = '/Users/icamara/Desktop/CLPS0950finalstroop'
 
-raw_data_file_path = os.path.join(raw_data_folder_path, 'raw_data.xlsx')
+raw_data_file_path = os.path.join(raw_data_folder_path, 'raw_data.csv')
 
 # Write the raw DataFrame to an Excel file in the specified output folder
-raw_df.to_excel(raw_data_file_path, index=False)
+raw_df.to_csv(raw_data_file_path, index=False)
+
+
+
+
+
+
 
 
 
