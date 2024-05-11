@@ -66,10 +66,62 @@ while True:
     if graph_prompt.lower ()== 'yes':
         condition= []
         colors = ['b', 'r', 'g', 'm']
-        linestyle = ['-', ]
+        linestyle = ['-','--', '-', '--']
+        plt.figure()
+        for i, condition in enumerate(conditions):
+            plt.plot(data[condition], label=condition, color=colors[i], linestyle[i])
+        plt.xlabel('Participant')
+        plt.ylabel('Log-Transformed Response Time')
+        plt.title('Log-Tranformed Response Time for Congruent and Incongruent Conditions')
+        plt.legend(loc='best')
+        plt.grid(True)
+        plt.show()
+        break
+    elif graph_prompt.lower ()== 'no':
+        print('Graph not requested.')
+        break
+    else:
+        print('Invalid input. Please enter "yes" or "no".')
+
+#Box plot
+    boxplot_prompt= input('Do you want to see a box plot?(yes/no)')
+    if boxplot_prompt.lower()== 'yes':
+        response_times= [data[condition] for condition in conditions]
+        plt.figure()
+        plt.boxplot(response_times, labels= conditions)
+        plt.xlabel('Task and Condition')
+        plt.ylabel('Response Time')
+        plt.title('Box Plot of Response Times for Different Tasks and Condtions')
+        plt.show()
+        break
+    elif boxplot_prompt.lower()== 'no':
+        print('Box plot not requested.')
+        break
+    else:
+        print('Please enter a valid choice.')
+
+    #Histogram
+    while True:
+        hist_prompt= input('Do you want to see a histogram of log-transformed response times? (yes/no)')
+        if hist_prompt.lower()== 'yes':
+            plt.figure()
+            plt.hist(np.log(data['responseTime']))
+            plt.xlabel('Log-Transformed Response Time')
+            plt.ylabel('Frequency')
+            plt.title('Histogram of Log-Transformed Response Time')
+            plt.show()
+            break
+        elif hist_prompt.lower()== 'no':
+            print ('Histogram not requested.')
+            break
+        else:
+            print('Invalid input.')
 
 
 
 
 
-# subgr
+
+# Subgroup analysis
+#Looking at data by gender
+
