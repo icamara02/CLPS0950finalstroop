@@ -3,7 +3,7 @@ import pandas as pd
 
 
 #folder path - if others use this, insert their folder path
-folder_path = '/Users/sofiagerlein/Desktop/CLPS0950finalstroop/stroop/copyofdatatouse'
+folder_path = '/Users/sofiagerlein/Desktop/CLPS0950finalstroop/stroop/data'
 
 #storing all data
 short_dfs = []
