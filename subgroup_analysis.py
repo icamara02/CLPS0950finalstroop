@@ -1,29 +1,36 @@
+import pandas as pd
+import matplotlib.pyplot as plt
 
 # Subgroup analysis
-#Looking at data by gender
-data= pd.read_csv('__.csv')
-data['Gender']= data['Gender'].str.lower()
+# Looking at data by gender
+data = pd.read_csv('raw_data.csv')
+data['Gender'] = data['Gender'].str.lower()
 
-if 'Gender' in data.columns:
-    #group by gender and calculate summary statistics
-    gender_data= data.groupby('Gender')['Response Time'].describe()
-    plt.subplot (1,2,1)
-    plt.table(cellText=gender_data.values,
-              colLabels= gender_data.colummns,
-              rowLabels= gender_data.index,
-              loc='center')
-    plt.axis('off')
+# Conditions
+conditions = ['CN', 'GC']
+while True:
+    condition_choice = input('Do you want to see average response times grouped by gender for Colornaming (CN) or Gender Categorization (GC)? ')
+    if condition_choice.upper() in conditions:
+        # Group by gender and calculate summary statistics
+        gender_data = data.groupby('Gender')[f'{condition_choice}.rt'].describe()
 
-    print("Summary statistics for response time grouped by gender: ")
-    print(gender_data)
-    #display bargraph to visualize stats
-    plt.figure(figsize= (12,6))
-    plt.subplot(1,2,2)
-    plt.bar(gender_data.index, gender_data['mean'], color='red')
-    plt.xlabel('Gender')
-    plt.ylabel('Mean Response Time')
-    plt.title('Mean Response Time by Gender')
+        print("Summary statistics for response time grouped by gender: ")
+        print(gender_data)
 
-    plt.show()
-else:
-    print("Error: 'Gender' column not found.")
+        plt.figure(figsize=(12, 6))
+        plt.bar(range(len(gender_data)), gender_data['mean'], color='red')
+        plt.xlabel('Gender')
+        plt.ylabel('Mean Response Time')
+        plt.xticks(range(len(gender_data)), gender_data.index)  # Set custom x-axis labels
+        plt.title(f'Mean Response Time by Gender for {condition_choice} Condition')
+        plt.show()
+
+        other_condition = input('Do you want to see response time for another condition? ')
+        if other_condition.lower() != 'yes':
+            break
+    else:
+        print('Invalid condition choice. Please enter CN or GC.')
+
+
+
+#
