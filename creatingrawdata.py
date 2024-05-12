@@ -28,6 +28,8 @@ for csv in os.listdir(folder_path):
         short_dfs.append(short_df)
 
 raw_df = pd.concat(short_dfs, ignore_index=True)
+raw_df.rename(columns={'response.rt': 'CN.rt', 'key_resp_5.rt': 'GC.rt'}, inplace=True)
+
 # if you use this code, put in your own folder path
 raw_data_folder_path = '/Users/sofiagerlein/Desktop/CLPS0950finalstroop'
 
@@ -38,8 +40,8 @@ raw_df.to_csv(raw_data_file_path, index=False)
 
 ## MERGE data from questionnaire and match responses to participant ID numbers in raw data
 
-# Folder path for raw data files
-raw_data_folder_path = '/Users/icamara/Desktop/CLPS0950finalstroop'
+# if you use this code, put in your own data path
+raw_data_folder_path = '/Users/sofiagerlein/Desktop/CLPS0950finalstroop'
 
 # Read the existing raw data CSV file
 raw_data_file_path = os.path.join(raw_data_folder_path, 'raw_data.csv')
