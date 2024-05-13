@@ -1,7 +1,7 @@
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 
 import csv
-def demographic_survey():
+def demographic_survey(): #collect demographic information
     participant_id= input("Before we begin, please enter your participant ID number: ")
     while True:
         print("\nFirst, we will be collecting basic demographic information.")
@@ -154,7 +154,7 @@ def demographic_survey():
             print("Invalid selection. Please enter either  1 or 2.")
 
 
-
+#display responses for participants
     print("\nThank you for completing the survey! Here are your responses: ")
     print("Gender:", gender)
     print("Age:", age)
@@ -166,6 +166,7 @@ def demographic_survey():
     print("Assertiveness:", assertiveness)
     print("Language:", language)
 
+#save data into a new csv file
     headers= ["Participant ID", "Gender", "Age", "Ethnicity", "Dolls", "STEM", "Barbie", "Leader", "Assertiveness", "Language"]
     with open ('survey_responses.csv', 'a', newline= '') as file:
         writer = csv.writer(file)
