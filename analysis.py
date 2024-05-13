@@ -56,7 +56,7 @@ while True:
         break
     else:
         print('Please enter a valid choice.')
-
+print ('ANOVA findings were non-significant.')
 #Log-transformed Graph
 while True:
     graph_prompt= input ('Do you want to produce a graph with average response time between conditions? (yes/no)')
@@ -87,13 +87,13 @@ while True:
     if boxplot_prompt== 'yes':
         response_times= [data[condition] for condition in condition]
         plt.figure()
-        plt.boxplot(response_times, labels= condition)
+        plt.boxplot(response_times, labels = condition)
         plt.xlabel('Task and Condition')
         plt.ylabel('Response Time')
         plt.title('Box Plot of Response Times for Different Tasks and Condtions')
         plt.show()
         break
-    elif boxplot_prompt== 'no':
+    elif boxplot_prompt == 'no':
         print('Box plot not requested.')
         break
     else:
