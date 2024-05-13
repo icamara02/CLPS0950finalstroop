@@ -10,7 +10,7 @@ data = pd.read_csv('pivot_table.csv')
 while True:
     descriptives_prompt = input('Do you want to see a descriptives table?(yes/no)')
     if descriptives_prompt == 'yes':
-        group_data = data[['GC_Cong_Avg', 'GC_Incong_Avg', 'CN_Cong_Avg', 'CN_Incong_Avg']]
+        group_data = data[['GC_Cong_Avg', 'GC_Incong_Avg', 'CN_Cong_Avg', 'CN_Incong_Avg']] #takes response times from the different conditions and assigns them to group_data
         descriptive_table = pd.DataFrame({
             'Mean': group_data.mean(),
             'Median': group_data.median(),
@@ -31,8 +31,8 @@ while True:
     anova_prompt = input('Do you want to perform a repeated-measures ANOVA? (yes/no)')
     if anova_prompt == 'yes':
         within_subjects= ['GC_Cong_Avg', 'GC_Incong_Avg', 'CN_Cong_Avg', 'CN_Incong_Avg']
-        rm_data= data.melt(var_name= 'Condition', value_name= 'Response Time')
-        rm_data['Participant']= range(1, len(rm_data)+1)
+        rm_data= data.melt(var_name= 'Condition', value_name= 'Response Time') #melt function changes data to a long format; each row will have a participant and condition combinaion
+        rm_data['Participant']= range(1, len(rm_data)+1) #adds participant column to rm_data
         print(rm_data)
         break
     elif anova_prompt == 'no':
@@ -44,10 +44,10 @@ while True:
 #One-way Anova
 while True:
     oneWay_prompt= input('Do you want to perform one-way ANOVA? (yes/no)')
-    if oneWay_prompt == 'yes':
-        conditions= ['GC_Cong_Avg', 'GC_Incong_Avg', 'CN_Cong_Avg', 'CN_Incong_Avg']
-        response_times = data[conditions]
-        f_statistic, p_value= stats.f_oneway(*[data[col] for col in response_times.columns])
+    if oneWay_prompt == 'yes': #execute code if part. inputs yes
+        conditions= ['GC_Cong_Avg', 'GC_Incong_Avg', 'CN_Cong_Avg', 'CN_Incong_Avg'] #ANOVA on these conditons
+        response_times = data[conditions] #store conditions data in response times
+        f_statistic, p_value= stats.f_oneway(*[data[col] for col in response_times.columns]) #calucates f-state and p-value based on response times
         print('F-statisitic:', f_statistic)
         print('p-value:', p_value)
         break
